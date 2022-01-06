@@ -1,9 +1,19 @@
 <mat-toolbar style="width: 100%" color="primary">Customer List</mat-toolbar>
 
 <ag-grid-angular
-  style="width: 1250px; height: 500px"
+  style="width: 1850px; height: 750px"
   class="ag-theme-alpine"
   [rowData]="rowData | async"
   [columnDefs]="columnDefs"
 >
 </ag-grid-angular>
+
+<button
+  (click)="openDialog()"
+  style="margin: 50px"
+  mat-raised-button
+  color="accent"
+>
+  JSON
+</button>
+<pre>{{ rowData | async | json }}</pre>
