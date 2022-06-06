@@ -9,11 +9,13 @@
 </ag-grid-angular>
 
 <button
-  (click)="openDialog()"
+  (click)="seeJson === true ? seeJson = false : seeJson = true"
   style="margin: 50px"
   mat-raised-button
   color="accent"
 >
   JSON
 </button>
-<pre>{{ rowData | async | json }}</pre>
+<ng-container *ngIf="seeJson">
+      <pre >{{ rowData | async | json }}</pre>
+</ng-container>

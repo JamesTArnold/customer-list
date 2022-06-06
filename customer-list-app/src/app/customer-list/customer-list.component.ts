@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ColDef } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
-import { JsonDialogComponent } from '../json-dialog/json-dialog.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -12,7 +12,7 @@ import { JsonDialogComponent } from '../json-dialog/json-dialog.component';
 })
 export class CustomerListComponent implements OnInit {
   rowData: Observable<any[]>;
-
+  seeJson: boolean = false;
   columnDefs: ColDef[] = [
     { field: 'id', hide: true, sortable: true, filter: true },
     {
@@ -44,7 +44,7 @@ export class CustomerListComponent implements OnInit {
       },
     },
     { field: 'email', headerName: 'Email', sortable: true, filter: true },
-    { field: 'address', headerName: 'Adress', sortable: true, filter: true },
+    { field: 'address', headerName: 'Address', sortable: true, filter: true },
     {
       field: 'state',
       headerName: 'State',
@@ -92,15 +92,26 @@ export class CustomerListComponent implements OnInit {
   ];
 
   constructor(private http: HttpClient, public dialog: MatDialog) {
-    this.rowData = this.http.get<any[]>(
-      'https://my.api.mockaroo.com/users.json?key=cd7df010'
-    );
+    this.rowData = this.http
+      .get<any[]>('https://my.api.mockaroo.com/users.json?key=cd7df010')
+      .pipe(catchError(this.handleError));
   }
+
   ngOnInit(): void {}
 
-  openDialog() {
-    this.dialog.open(JsonDialogComponent, {
-      data: this.rowData,
-    });
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `,
+        error.error
+      );
+    }
+    return throwError('Something bad happened; please try again later.');
+  }
+
+  public openDialog() {
+
   }
 }

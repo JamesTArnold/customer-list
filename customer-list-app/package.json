@@ -23,7 +23,7 @@
     "@angular/router": "~12.0.2",
     "ag-grid-angular": "^26.2.0",
     "ag-grid-community": "^26.2.1",
-    "firebase": "^9.4.0",
+    "firebase": "^9.8.2",
     "mockaroo": "^0.1.7",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",

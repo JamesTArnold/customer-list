@@ -10,10 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { JsonDialogComponent } from './json-dialog/json-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AppComponent, CustomerListComponent, JsonDialogComponent],
+  declarations: [AppComponent, CustomerListComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +23,7 @@ import { JsonDialogComponent } from './json-dialog/json-dialog.component';
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
