@@ -9,13 +9,14 @@
 </ag-grid-angular>
 
 <button
-  (click)="seeJson === true ? seeJson = false : seeJson = true"
+  *ngIf="rowData !== null"
+  (click)="seeJson === true ? (seeJson = false) : (seeJson = true)"
   style="margin: 50px"
   mat-raised-button
   color="accent"
 >
   JSON
 </button>
-<ng-container *ngIf="seeJson">
-      <pre >{{ rowData | async | json }}</pre>
+<ng-container [ngClass]="{ 'hide-json': !seeJson, 'show-json': seeJson }">
+  <pre>{{ rowData | async | json }}</pre>
 </ng-container>
