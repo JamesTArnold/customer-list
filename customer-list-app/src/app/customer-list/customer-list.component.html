@@ -7,16 +7,17 @@
   [columnDefs]="columnDefs"
 >
 </ag-grid-angular>
-
-<button
-  *ngIf="rowData !== null"
-  (click)="seeJson === true ? (seeJson = false) : (seeJson = true)"
-  style="margin: 50px"
-  mat-raised-button
-  color="accent"
->
-  JSON
-</button>
-<ng-container [ngClass]="{ 'hide-json': !seeJson, 'show-json': seeJson }">
-  <pre>{{ rowData | async | json }}</pre>
+<ng-container *ngIf="rowData | async as data">
+  <button
+    *ngIf="rowData !== null"
+    (click)="seeJson === true ? (seeJson = false) : (seeJson = true)"
+    style="margin: 5px"
+    mat-raised-button
+    color="accent"
+  >
+    JSON
+  </button>
+  <div *ngIf="seeJson === true">
+    <pre>{{ data | json }}</pre>
+  </div>
 </ng-container>

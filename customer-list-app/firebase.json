@@ -1,1 +1,16 @@
-{}
+{
+  "apiKey": "AIzaSyBqnJh7FqdoX9toKW3ShLm55jlAwtW5TpI",
+  "authDomain": "customerlist-4a483.firebaseapp.com",
+  "projectId": "customerlist-4a483",
+  "storageBucket": "customerlist-4a483.appspot.com",
+  "messagingSenderId": "119950584785",
+  "appId": "1:119950584785:web:56208341b7ebebeedacef0",
+  "hosting": {
+    "public": "dist/customer-list-app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
